@@ -1,10 +1,28 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
 });
+
+
+Route::get('/admin/login', function () {
+    return view('admin-panel.login');
+})->name('admin.login');
+
+
+Route::get('/admin/register', function () {
+    return view('admin-panel.register');
+})->name('admin.register');
+
+
+Route::get('dashboard', function () {
+    return view('admin-panel.dashboard');
+})->name('dashboard');
+
 
 Route::get('/shop', function () {
     return view('shop');
@@ -31,11 +49,9 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
+
+Route::get('users/list',[UserController::class,'index'])->name('users.list');
 
 
-Route::get('/product-details', function () {
-    return view('product-detail');
-})->name('product.details');
+Route::get('products/list',[ProductController::class,'index'])->name('products.list');
+Route::get('products/create',[ProductController::class,'create'])->name('products.create');

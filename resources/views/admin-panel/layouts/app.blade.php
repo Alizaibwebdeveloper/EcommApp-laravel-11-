@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela!</title>
+    <title>{{ config('app.name') }}</title>
 
      <!-- Bootstrap -->
      <link href="{{asset('/admin-panel/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -26,7 +26,8 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>{{ config('app.name') }}</span></span>
+              </a>
             </div>
 
             <div class="clearfix"></div>
@@ -34,11 +35,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{asset('img/avatar.jpg')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>{{Auth::user()->name}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

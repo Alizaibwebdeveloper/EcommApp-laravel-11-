@@ -26,26 +26,28 @@
         
         <div id="register" class="animate form ">
           <section class="login_content">
-            <form>
+            <form action="{{route('admin.store')}}" method="POST">
+              @csrf
               <h1>Create Account</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" name="name" class="form-control" placeholder="name" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="email" name="email" class="form-control" placeholder="Email" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" name="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+
+                <button type="submit" class="btn btn-default">Submit</button>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
                 <p class="change_link">Already a member ?
-                  <a href="{{route('admin.login')}}" class="to_register"> Log in </a>
+                  <a href="{{route('login')}}" class="to_register"> Log in </a>
                 </p>
 
                 <div class="clearfix"></div>

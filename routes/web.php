@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\loginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -11,17 +14,11 @@ Route::get('/', function () {
 
 Route::get('/admin/login', function () {
     return view('admin-panel.login');
-})->name('admin.login');
+})->name('login');
 
 
-Route::get('/admin/register', function () {
-    return view('admin-panel.register');
-})->name('admin.register');
 
 
-Route::get('dashboard', function () {
-    return view('admin-panel.dashboard');
-})->name('dashboard');
 
 
 Route::get('/shop', function () {
@@ -50,8 +47,19 @@ Route::get('/contact', function () {
 
 
 
-Route::get('users/list',[UserController::class,'index'])->name('users.list');
+Route::get('/admin/register',[RegisterController::class,'create'])->name('admin.register');
+Route::post('admin/store',[RegisterController::class,'register'])->name('admin.store');
+Route::post('admin/login',[loginController::class,'login'])->name('admin.login');
+Route::get('admin/logout',[loginController::class,'logout'])->name('admin.logout');
 
 
-Route::get('products/list',[ProductController::class,'index'])->name('products.list');
-Route::get('products/create',[ProductController::class,'create'])->name('products.create');
+Route::middleware('auth')->group(function(){
+    Route::get('users/list',[UserController::class,'index'])->name('users.list');
+    Route::get('products/list',[ProductController::class,'index'])->name('products.list');
+    Route::get('products/create',[ProductController::class,'create'])->name('products.create');
+
+    
+Route::get('dashboard', function () {
+    return view('admin-panel.dashboard');
+})->name('dashboard');
+});

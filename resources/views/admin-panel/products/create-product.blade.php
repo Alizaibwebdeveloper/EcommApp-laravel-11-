@@ -8,94 +8,87 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Form Elements</h3>
+							<h3>Product</h3>
 						</div>
 
-						<div class="title_right">
-							<div class="col-md-5 col-sm-5  form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Form Design <small>different form elements</small></h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-										</li>
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a class="dropdown-item" href="#">Settings 1</a>
-												</li>
-												<li><a class="dropdown-item" href="#">Settings 2</a>
-												</li>
-											</ul>
-										</li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
+									<h2>Products<small>Create</small></h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
+
+										@csrf
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Title<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input  type="text" name="title" id="title"  class="form-control ">
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Price<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" id="price" name="price"  class="form-control">
+											</div>
+										</div>
+
 
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="description">Description<span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="first-name" required="required" class="form-control ">
-											</div>
+												<input type="textarea" id="description" name="description"  class="form-control" cols="30" rows="10" required>
+											</div> 
 										</div>
+
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="discount_price">Discount_Price<span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="last-name" name="last-name" required="required" class="form-control">
+												<input type="text" id="discount_price" name="discount_price"  class="form-control">
+											</div> 
+										</div>
+
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category<span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6">
+												<select name="category_id" id="category_id" class="form-control" required>
+													<option value="">Select Category</option>
+													@foreach($categories as $category)
+														<option value="{{ $category->id }}">{{ $category->name }}</option>
+													@endforeach
+												</select>
 											</div>
 										</div>
+										
 										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input id="middle-name" class="form-control" type="text" name="middle-name">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="sub_category_id">Sub Category<span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6">
+												<select name="sub_category_id" id="sub_category_id" class="form-control" required>
+													<option value="">Select Sub Category</option>
+													<!-- Subcategories will be dynamically populated -->
+												</select>
 											</div>
 										</div>
+										
+
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-											<div class="col-md-6 col-sm-6 ">
-												<div id="gender" class="btn-group" data-toggle="buttons">
-													<label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-														<input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-													</label>
-													<label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-														<input type="radio" name="gender" value="female" class="join-btn"> Female
-													</label>
-												</div>
-											</div>
-										</div>
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="discount_price">Image<span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-												<script>
-													function timeFunctionLong(input) {
-														setTimeout(function() {
-															input.type = 'text';
-														}, 60000);
-													}
-												</script>
-											</div>
+												<input type="file" id="image" name="image"  class="form-control">
+											</div> 
 										</div>
+
+	
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
@@ -116,3 +109,34 @@
 			<!-- /page content -->
  
 @endsection
+
+<!-- JavaScript Code -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categories = @json($categories); // Pass the categories data to JavaScript
+        const subCategories = @json($subCategories); // Pass the subcategories data to JavaScript
+
+        const categoryDropdown = document.getElementById('category_id');
+        const subCategoryDropdown = document.getElementById('sub_category_id');
+
+        categoryDropdown.addEventListener('change', function () {
+            const selectedCategoryId = this.value;
+
+            // Clear existing subcategories
+            subCategoryDropdown.innerHTML = '<option value="">Select Sub Category</option>';
+
+            if (selectedCategoryId) {
+                // Filter subcategories based on the selected category
+                const filteredSubCategories = subCategories.filter(sub => sub.category_id == selectedCategoryId);
+
+                // Populate the subcategory dropdown
+                filteredSubCategories.forEach(sub => {
+                    const option = document.createElement('option');
+                    option.value = sub.id;
+                    option.textContent = sub.name;
+                    subCategoryDropdown.appendChild(option);
+                });
+            }
+        });
+    });
+</script>

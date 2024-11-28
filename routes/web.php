@@ -26,6 +26,11 @@ Route::get('/shop', function () {
 })->name('shop');
 
 
+Route::get('/product-detail', function () {
+    return view('product-detail');
+})->name('product.details');
+
+
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
@@ -55,11 +60,17 @@ Route::get('admin/logout',[loginController::class,'logout'])->name('admin.logout
 
 Route::middleware('auth')->group(function(){
     Route::get('users/list',[UserController::class,'index'])->name('users.list');
-    Route::get('products/list',[ProductController::class,'index'])->name('products.list');
-    Route::get('products/create',[ProductController::class,'create'])->name('products.create');
 
     
 Route::get('dashboard', function () {
     return view('admin-panel.dashboard');
 })->name('dashboard');
+
+    Route::prefix('products')->group(function () {
+        Route::get('list', [ProductController::class, 'index'])->name('products.list');
+        Route::get('create', [ProductController::class, 'create'])->name('products.create');
+        Route::post('store', [ProductController::class, 'StoreProdcut'])->name('product.store');
+    });
+    
+    
 });

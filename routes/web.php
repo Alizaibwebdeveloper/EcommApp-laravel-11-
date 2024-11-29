@@ -1,16 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\loginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 
 
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('/admin/login', function () {
     return view('admin-panel.login');

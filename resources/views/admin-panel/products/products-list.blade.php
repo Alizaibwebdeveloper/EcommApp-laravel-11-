@@ -42,8 +42,8 @@
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->discount_price}}</td>
-                    <td>{{$product->category_id}}</td>
-                    <td>{{$product->sub_category_id}}</td>
+                    <td>{{$product->Category->name}}</td>
+                    <td>{{$product->subcategory->name}}</td>
                     <td>
                       <img src="{{ asset('uploads/products/' . $product->image) }}" alt="{{ $product->title }}" height="100">
                   </td>

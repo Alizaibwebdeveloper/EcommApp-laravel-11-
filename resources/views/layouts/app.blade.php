@@ -41,6 +41,45 @@
 
         @yield('content')
 
+         <!-- Fruits Shop Start-->
+         <div class="container-fluid fruite py-5">
+            <div class="container py-5">
+                <div class="tab-class text-center">
+                    <div class="row g-4">
+                        <div class="col-lg-4 text-start">
+                            <h1>Our Organic Products</h1>
+                        </div>
+                        <div class="col-lg-8 text-end">
+                            <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                                @foreach ($subcategories as $sub_cat)
+    <li class="nav-item">
+        <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+            <span class="text-dark" style="width: 130px;">{{ $sub_cat->name }}</span>
+        </a>
+    </li>
+@endforeach
+
+
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4 front-product-div">
+                                        @include('layouts.front-product')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>      
+            </div>
+        </div>
+
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
